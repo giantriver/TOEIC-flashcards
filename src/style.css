@@ -64,6 +64,7 @@ h2 { font-size: 1.15rem; }
 .markdown-body p, .markdown-body ul, .markdown-body ol { margin: 0 0 1em; }
 .markdown-body blockquote { margin: 0 0 1em; padding: 8px 14px; border-left: 3px solid #72a8a1; color: #49636b; background: #f1f7f6; }
 .markdown-body code { padding: 2px 5px; border-radius: 4px; background: #edf2f1; color: #b24040; }
+.markdown-body table { display: block; max-width: 100%; overflow-x: auto; }
 .detail-heading { align-items: center; }
 .back-link { display: inline-block; margin-bottom: 10px; font-size: 0.9rem; }
 .note-content { max-width: 800px; padding: 8px 0; }
@@ -100,22 +101,60 @@ h2 { font-size: 1.15rem; }
 .starred-empty { margin: 0 auto; padding-top: 22px; text-align: center; }
 
 @media (max-width: 680px) {
-  .app-header { padding-inline: 5vw; }
+  body { background: #f8faf9; }
+  .app-header { position: sticky; top: 0; z-index: 10; min-height: calc(56px + env(safe-area-inset-top)); padding: env(safe-area-inset-top) 16px 0; gap: 12px; }
+  .brand { font-size: 0.98rem; }
   .user-name, .text-link { display: none; }
-  .page-shell { padding-top: 30px; }
-  .page-heading, .detail-heading, .review-header { align-items: flex-start; flex-direction: column; gap: 16px; }
+  .header-actions .button { min-width: 48px; padding-inline: 8px; }
+  .page-shell { width: 100%; padding: 28px 16px calc(32px + env(safe-area-inset-bottom)); }
+  h1 { font-size: 1.85rem; }
+  .button { min-height: 44px; }
+  .page-heading, .detail-heading, .review-header { align-items: stretch; flex-direction: column; gap: 16px; margin-bottom: 24px; }
+  .page-heading > .button, .review-header > .button { width: 100%; }
+  .page-heading .form-actions, .detail-heading .form-actions { display: grid; grid-template-columns: 1fr 1fr; width: 100%; gap: 8px; }
+  .detail-heading .button-primary { grid-column: 1 / -1; }
   .editor-topline { align-items: stretch; flex-direction: column; }
-  .editor-topline .form-actions { justify-content: flex-end; }
+  .editor-topline .form-actions { display: grid; grid-template-columns: 1fr 1fr; justify-content: stretch; }
+  .editor-topline .form-actions .button { width: 100%; }
+  .title-input { min-height: 48px; font-size: 1.12rem; }
   .editor-tabs { display: grid; grid-template-columns: 1fr 1fr; margin-bottom: 0; }
-  .editor-tabs button { padding: 11px; border: 1px solid #d5dfdd; background: #fff; color: #587078; font-weight: 700; }
+  .editor-tabs button { min-height: 44px; padding: 11px; border: 1px solid #d5dfdd; background: #fff; color: #587078; font-weight: 700; }
   .editor-tabs button.active { border-color: #176b87; background: #e6f3ef; color: #176b87; }
-  .editor-grid { display: block; min-height: 480px; border-radius: 0 0 8px 8px; }
-  .editor-pane, .preview-pane { display: none; min-height: 480px; border: 0; }
+  .editor-grid { display: block; min-height: 56svh; border-radius: 0 0 8px 8px; }
+  .editor-pane, .preview-pane { display: none; min-height: 56svh; border: 0; }
   .editor-grid.show-editor .editor-pane, .editor-grid.show-preview .preview-pane { display: block; }
-  .editor-pane textarea { min-height: 480px; }
-  .note-card { align-items: flex-start; flex-direction: column; }
-  .note-card .button { align-self: flex-start; }
-  .flashcard { height: 420px; }
-  .review-controls { grid-template-columns: 1fr; }
+  .editor-pane textarea { min-height: 56svh; padding: 16px; font-size: 1rem; }
+  .preview-pane { padding: 16px; }
+  .notes-list { gap: 10px; }
+  .note-card { align-items: stretch; flex-direction: column; gap: 15px; padding: 16px; }
+  .note-card-main h2 { font-size: 1.1rem; }
+  .note-card .button { width: 100%; }
+  .empty-state { padding: 30px 0; }
+  .login-view { padding: 8vh 0; }
+  .login-view h1 { font-size: 2.2rem; line-height: 1.2; }
+  .login-copy { margin: 18px 0 25px; font-size: 1rem; }
+  .login-view .button { width: 100%; }
+  .note-content { padding-top: 0; }
+  .review-view { max-width: none; }
+  .review-header > .button { align-self: stretch; }
+  .review-stage { padding-top: 4px; }
+  .review-mode { display: grid; width: 100%; margin-bottom: 13px; }
+  .review-mode button { min-width: 0; min-height: 42px; padding-inline: 8px; }
+  .flashcard { height: clamp(340px, 54svh, 440px); min-height: 0; }
+  .flashcard-face { padding: 70px 20px 48px; box-shadow: 0 8px 20px rgba(30, 67, 70, 0.1); }
+  .flashcard strong { font-size: clamp(2rem, 10vw, 2.7rem); }
+  .flashcard em { margin-top: 12px; }
+  .card-tools { top: 12px; right: 12px; gap: 6px; }
+  .star-button, .youglish-button { width: 40px; height: 40px; }
+  .flip-hint { bottom: 16px; }
+  .review-controls { grid-template-columns: 1fr 1.12fr 1fr; gap: 8px; margin-top: 14px; }
+  .review-controls .button { min-width: 0; padding-inline: 6px; }
+}
+
+@media (max-width: 380px) {
+  .page-shell { padding-inline: 13px; }
+  .brand { font-size: 0.9rem; }
+  .flashcard strong { font-size: 1.9rem; }
+  .review-controls .button { font-size: 0.9rem; }
 }
 
