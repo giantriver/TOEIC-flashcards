@@ -1,0 +1,26 @@
+{
+  "name": "toeic-flashcards",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc -b && vite build",
+    "preview": "vite preview",
+    "type-check": "vue-tsc -b --noEmit"
+  },
+  "dependencies": {
+    "@vitejs/plugin-vue": "latest",
+    "dompurify": "latest",
+    "firebase": "latest",
+    "marked": "latest",
+    "vue": "latest",
+    "vue-router": "latest"
+  },
+  "devDependencies": {
+    "typescript": "5.8.3",
+    "vite": "latest",
+    "vue-tsc": "latest"
+  }
+}
+
